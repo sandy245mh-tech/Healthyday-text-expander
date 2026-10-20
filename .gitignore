@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE & system
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.agents/
+.windsurf/
+.claude/
+
+# Archives
+*.zip
+
+# Logs
+*.log

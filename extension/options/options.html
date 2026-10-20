@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthyday — Canned Messages</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- ── Left Sidebar (Screenshot 1) ─────────────────────── -->
+    <aside class="sidebar">
+      <!-- Healthyday Brand Header -->
+      <div class="sidebar-brand">
+        <div class="brand-logo-box">
+          <img src="../assets/healthyday-emblem.png" alt="Healthyday" class="brand-logo-img" />
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Healthyday</div>
+          <div class="brand-subtitle">Workspace Snippets</div>
+        </div>
+      </div>
+
+      <div class="sidebar-header">
+        <h1 class="sidebar-title">Library</h1>
+        <p class="sidebar-subtitle">Manage your snippets</p>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Snippet navigation">
+        <button class="nav-item active" data-filter="all" id="nav-all">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="nav-label">ALL</span>
+          <span class="nav-count" id="count-all">0</span>
+        </button>
+
+        <button class="nav-item" data-filter="newest" id="nav-newest">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="16"
+            height="16">
+            <circle cx="10" cy="10" r="7" />
+            <path d="M10 6v4l2.5 2.5" />
+          </svg>
+          <span class="nav-label">NEWEST</span>
+        </button>
+
+        <button class="nav-item" data-filter="oldest" id="nav-oldest">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="16"
+            height="16">
+            <path d="M3 10a7 7 0 1 1 1.9 4.8L3 17" />
+            <path d="M3 12v5h5" />
+            <path d="M10 7v3l2 2" />
+          </svg>
+          <span class="nav-label">OLDEST</span>
+        </button>
+
+        <button class="nav-item" data-filter="updated" id="nav-updated">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="16"
+            height="16">
+            <path d="M4 4v5h5" />
+            <path d="M16 16v-5h-5" />
+            <path d="M5.5 15.5A7 7 0 1 0 4.5 9" />
+          </svg>
+          <span class="nav-label">RECENTLY UPDATED</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-group-title">COLLECTIONS</div>
+
+        <button class="nav-item sub-item" data-scope="personal" id="nav-personal">
+          <span class="scope-dot personal-dot"></span>
+          <span class="nav-label">Personal Cans</span>
+          <span class="nav-count" id="count-personal">0</span>
+        </button>
+
+        <button class="nav-item sub-item" data-scope="org" id="nav-org">
+          <span class="scope-dot org-dot"></span>
+          <span class="nav-label">Organization</span>
+          <span class="nav-count" id="count-org">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-profile" id="sidebar-profile" title="Click to view/switch user">
+          <div class="sidebar-profile-avatar" id="sidebar-profile-avatar">A</div>
+          <div class="sidebar-profile-info">
+            <div class="sidebar-profile-name" id="sidebar-profile-name">alex</div>
+            <div class="sidebar-profile-role" id="sidebar-profile-role">Admin</div>
+          </div>
+          <svg class="sidebar-profile-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"
+            width="14" height="14">
+            <path d="M7 7l3 3 3-3" />
+          </svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Workspace Area (Screenshot 1) ───────────────── -->
+    <main class="main-workspace">
+
+      <!-- Top Navigation Bar (Screenshot 1) -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h2 class="page-title">Canned Messages</h2>
+        </div>
+
+        <div class="top-bar-center">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="16"
+              height="16">
+              <circle cx="8.5" cy="8.5" r="5.5" />
+              <line x1="12.5" y1="12.5" x2="17" y2="17" />
+            </svg>
+            <input type="text" id="global-search" class="search-input" placeholder="Search messages..."
+              autocomplete="off" aria-label="Search messages" />
+            <span class="kbd-badge" id="search-kbd">Ctrl K</span>
+            <button class="search-clear-btn hidden" id="search-clear" aria-label="Clear search">✕</button>
+          </div>
+        </div>
+
+        <div class="top-bar-right">
+          <div class="notif-wrapper">
+            <button class="icon-button" id="btn-notifications" title="Notifications" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="notif-badge hidden" id="notif-badge">0</span>
+            </button>
+            <div class="notifications-dropdown hidden" id="notifications-dropdown">
+              <div class="notif-dropdown-header">
+                <div class="notif-dropdown-title-row">
+                  <span class="notif-dropdown-title">🔔 Updates & Notifications</span>
+                  <span class="notif-unread-count" id="notif-unread-pill">0 new</span>
+                </div>
+                <button class="notif-mark-all-read" id="btn-mark-all-read" title="Mark all as read">Mark all as read</button>
+              </div>
+              <div class="notif-filter-tabs">
+                <button class="notif-filter-tab active" id="btn-notif-tab-new">New Updates (<span id="notif-tab-new-count">0</span>)</button>
+                <button class="notif-filter-tab" id="btn-notif-tab-all">All (<span id="notif-tab-all-count">0</span>)</button>
+              </div>
+              <div class="notif-dropdown-list" id="notif-dropdown-list">
+                <!-- Notifications loaded here -->
+              </div>
+              <div class="notif-empty-state hidden" id="notif-dropdown-empty">
+                <div class="notif-empty-icon">🛎️</div>
+                <p class="notif-empty-title" id="notif-empty-title">All caught up!</p>
+                <p class="notif-empty-sub" id="notif-empty-desc">No new notifications or updates</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="icon-button" id="btn-open-help" title="Keyboard Shortcuts & Help" aria-label="Help">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18">
+              <circle cx="10" cy="10" r="7" />
+              <path d="M8 8a2 2 0 1 1 3.5 1.3c-.7.6-1.5 1.2-1.5 2.2v.5" />
+              <circle cx="10" cy="15" r="0.75" fill="currentColor" />
+            </svg>
+          </button>
+
+          <div class="user-pill-tag" id="user-status-pill">
+            <span class="user-role-dot" id="user-role-indicator"></span>
+            <span id="user-display-name">alex (ADMIN)</span>
+          </div>
+
+          <button class="btn btn-add-header" id="btn-add-message">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+              <path fill-rule="evenodd"
+                d="M10 4a1 1 0 011 1v4h4a1 1 0 110 2h-4v4a1 1 0 11-2 0v-4H5a1 1 0 110-2h4V5a1 1 0 011-1z"
+                clip-rule="evenodd" />
+            </svg>
+            <span>Add</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Subtitle description -->
+      <div class="content-header">
+        <p class="content-description">Save and manage messages you use often.</p>
+      </div>
+
+      <!-- Section Title Row: ACTIVE SNIPPETS ... X saved templates (Screenshot 1) -->
+      <div class="section-meta-row">
+        <span class="section-meta-title">ACTIVE SNIPPETS</span>
+        <span class="section-meta-count" id="snippets-meta-count">3 saved templates</span>
+      </div>
+
+      <!-- Messages Grid / Container -->
+      <div class="messages-container" id="messages-container">
+        <!-- Message cards rendered here via JavaScript -->
+        <div class="cards-grid" id="cards-grid"></div>
+
+        <!-- Empty State (Screenshot 1) -->
+        <div class="empty-state hidden" id="empty-state">
+          <div class="empty-speech-bubble">
+            <svg class="speech-svg" viewBox="0 0 32 32" fill="none">
+              <path d="M6 8C6 6.34315 7.34315 5 9 5H23C24.6569 5 26 6.34315 26 8V19C26 20.6569 24.6569 22 23 22H13L8 26V22H9C7.34315 22 6 20.6569 6 19V8Z" fill="#e0ecfc" stroke="#002d62" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="23" cy="7" r="3.5" fill="#f0a818" />
+            </svg>
+          </div>
+          <h3 class="empty-title" id="empty-title">No messages found</h3>
+          <p class="empty-description" id="empty-description">Create your first canned message snippet to expand text quickly on any site.</p>
+          <button class="btn btn-save" id="btn-add-empty">+ Add Message</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ── Add/Edit Message Modal (Screenshot 2) ────────────────── -->
+  <div class="modal-overlay hidden" id="modal-overlay-message" role="dialog" aria-modal="true"
+    aria-labelledby="modal-message-title">
+    <div class="modal-card modal-card-form">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-message-title">Add Message</h3>
+        <button class="modal-close-btn" id="btn-close-message-modal" aria-label="Close dialog">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <line x1="5" y1="5" x2="15" y2="15" />
+            <line x1="15" y1="5" x2="5" y2="15" />
+          </svg>
+        </button>
+      </div>
+
+      <form class="modal-body form-modal" id="form-message" novalidate>
+        <input type="hidden" id="field-message-id" />
+
+        <div class="readonly-badge-box hidden" id="options-org-readonly-notice" style="background: rgba(0, 45, 98, 0.05); border: 1px solid rgba(0, 45, 98, 0.15); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 13px; color: var(--brand-navy); display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 15px;">🔒</span>
+          <span><strong>Admin Managed:</strong> This organization canned message was created by an admin and is read-only for agents.</span>
+        </div>
+
+        <!-- MESSAGE TITLE -->
+        <div class="form-group">
+          <label class="form-label" for="field-message-title">MESSAGE TITLE</label>
+          <input type="text" id="field-message-title" class="form-input" placeholder="e.g. Interview Introduction"
+            required autocomplete="off" />
+        </div>
+
+        <!-- SHORTCUT -->
+        <div class="form-group">
+          <label class="form-label" for="field-message-shortcut">SHORTCUT</label>
+          <input type="text" id="field-message-shortcut" class="form-input form-input-shortcut" placeholder="/shortcut"
+            required autocomplete="off" />
+        </div>
+
+        <!-- MESSAGE CONTENT -->
+        <div class="form-group">
+          <div class="form-label-row">
+            <label class="form-label" for="field-message-content">MESSAGE CONTENT</label>
+            <span class="form-label-hint">Plain text supported</span>
+          </div>
+          <textarea id="field-message-content" class="form-textarea" rows="6"
+            placeholder="Enter your canned message here..." required></textarea>
+        </div>
+
+        <!-- Scope selector (Organization vs Personal for Admin) -->
+        <div class="form-group hidden" id="scope-selector-group">
+          <label class="form-label">CATEGORY / SHARING</label>
+          <div class="scope-options">
+            <label class="radio-label">
+              <input type="radio" name="message-scope" value="personal" checked id="scope-personal" />
+              <span>Personal Can (Only for you)</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="message-scope" value="org" id="scope-org" />
+              <span>Organization Can (Shared with all agents)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-error hidden" id="form-error-msg" role="alert"></div>
+
+        <!-- Modal Footer (Screenshot 2) -->
+        <div class="modal-footer">
+          <div class="modal-footer-hint">
+            <svg class="hint-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="16"
+              height="16">
+              <rect x="3" y="4" width="14" height="10" rx="2" />
+              <line x1="7" y1="17" x2="13" y2="17" />
+              <line x1="10" y1="14" x2="10" y2="17" />
+            </svg>
+            <span id="options-modal-hint-text">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to save</span>
+          </div>
+
+          <div class="modal-footer-actions">
+            <button type="button" class="btn btn-secondary" id="btn-cancel-message">Cancel</button>
+            <button type="button" class="btn btn-secondary hidden" id="btn-options-copy-content">Copy Content</button>
+            <button type="submit" class="btn btn-save" id="btn-save-message">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                <path
+                  d="M17 3H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2zm-5 14H8v-5h4v5zm3-9H5V5h10v3z" />
+              </svg>
+              <span>Save Message</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Delete Message Confirmation Modal (Screenshot 3) ─────── -->
+  <div class="modal-overlay hidden" id="modal-overlay-delete" role="dialog" aria-modal="true"
+    aria-labelledby="modal-delete-title">
+    <div class="modal-card modal-card-delete">
+      <div class="delete-card-content">
+        <!-- Red warning triangle container -->
+        <div class="warning-icon-box">
+          <svg class="warning-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <circle cx="12" cy="17" r="1" fill="currentColor" />
+          </svg>
+        </div>
+
+        <div class="delete-text-block">
+          <h4 class="delete-title" id="modal-delete-title">Delete message?</h4>
+          <p class="delete-description">
+            Are you sure you want to delete <span class="mention-chip" id="delete-item-title">"Interview
+              Introduction"</span>?
+          </p>
+          <p class="delete-warning">This action cannot be undone.</p>
+        </div>
+      </div>
+
+      <div class="delete-modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel-delete">Cancel</button>
+        <button type="button" class="btn btn-danger-solid btn-sm" id="btn-confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Settings Modal / Drawer ─────────────────────────────── -->
+  <div class="modal-overlay hidden" id="modal-overlay-settings" role="dialog" aria-modal="true"
+    aria-labelledby="modal-settings-title">
+    <div class="modal-card modal-card-settings">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-settings-title">Extension Settings</h3>
+        <button class="modal-close-btn" id="btn-close-settings-modal" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <h4 class="settings-heading">Current User Identity</h4>
+          <div class="user-profile-box">
+            <div class="user-avatar-circle" id="settings-avatar">?</div>
+            <div class="user-profile-details">
+              <div class="user-profile-name" id="settings-user-name">—</div>
+              <div class="user-profile-role" id="settings-user-role">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h4 class="settings-heading">Switch Identity</h4>
+          <div class="form-group">
+            <label class="form-label" for="settings-name-input">Display Name</label>
+            <input type="text" id="settings-name-input" class="form-input" placeholder="e.g. Alex" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="settings-role-select">Role</label>
+            <select id="settings-role-select" class="form-select">
+              <option value="AGENT">Agent (Personal Cans)</option>
+              <option value="ADMIN">Admin (Personal + Organization Cans)</option>
+            </select>
+          </div>
+          <button class="btn btn-secondary" id="btn-update-identity">Update Identity</button>
+        </div>
+
+        <div class="settings-section">
+          <h4 class="settings-heading">Backend Server URL</h4>
+          <div class="form-group">
+            <input type="text" id="settings-server-url" class="form-input" placeholder="http://localhost:3001" />
+          </div>
+          <button class="btn btn-secondary" id="btn-save-server-url">Save Server URL</button>
+        </div>
+
+        <div class="settings-section">
+          <h4 class="settings-heading">Cloud Sync</h4>
+          <button class="btn btn-secondary" id="btn-sync-now">🔄 Sync Data Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Help / Shortcuts Modal ──────────────────────────────── -->
+  <div class="modal-overlay hidden" id="modal-overlay-help" role="dialog" aria-modal="true">
+    <div class="modal-card modal-card-help">
+      <div class="modal-header">
+        <h3 class="modal-title">Keyboard Shortcuts & Guide</h3>
+        <button class="modal-close-btn" id="btn-close-help-modal" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="modal-body">
+        <ul class="shortcuts-list">
+          <li>
+            <span>Expand shortcut in any website</span>
+            <span class="shortcut-keys"><kbd>/shortcut</kbd> + <kbd>Space</kbd> or <kbd>Enter</kbd></span>
+          </li>
+          <li>
+            <span>Quick search messages</span>
+            <span class="shortcut-keys"><kbd>⌘ K</kbd> or <kbd>Ctrl K</kbd></span>
+          </li>
+          <li>
+            <span>Save message inside dialog</span>
+            <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+          </li>
+          <li>
+            <span>Close modal dialogs</span>
+            <span class="shortcut-keys"><kbd>Esc</kbd></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Pro Modal ───────────────────────────────────────────── -->
+  <div class="modal-overlay hidden" id="modal-overlay-pro" role="dialog" aria-modal="true">
+    <div class="modal-card modal-card-pro">
+      <div class="modal-header">
+        <h3 class="modal-title">✨ Cloud Text Expander Pro</h3>
+        <button class="modal-close-btn" id="btn-close-pro-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:#475569;margin-bottom:16px;">You are currently enjoying the connected Cloud Text Expander
+          edition with live Supabase synchronization!</p>
+        <ul class="pro-features-list">
+          <li>⚡ Unlimited shortcuts & message templates</li>
+          <li>🏢 Organization-wide shared cans for all agents</li>
+          <li>🔄 Real-time cloud sync across browsers</li>
+          <li>🛡 Team permissions & role management</li>
+        </ul>
+      </div>
+      <div class="modal-footer" style="justify-content: flex-end;">
+        <button class="btn btn-save" id="btn-got-it-pro">Got It!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script type="module" src="options.js"></script>
+</body>
+
+</html>
